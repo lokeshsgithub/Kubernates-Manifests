@@ -1,0 +1,23 @@
+# Deployments  Recreate
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavenwebapp-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      name: mavenwebapp-pod
+      labels:
+        app: mavenwebapp
+    spec:
+      containers:
+      - name: mavenwebapp-container
+        image: lokeshsdockerhub/mavenwebapp:1
+        ports:
+        - containerPort: 80
